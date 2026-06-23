@@ -5,8 +5,8 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(({ command }) => {
   return {
-    // Usa caminho relativo apenas no build para o GitHub Pages
-    base: command === 'build' ? './' : '/',
+    // Configura o base para o repositório do GitHub Pages em produção (/vaptstudio/)
+    base: command === 'build' ? '/vaptstudio/' : '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
