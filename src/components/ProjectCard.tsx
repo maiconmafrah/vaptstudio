@@ -1,4 +1,5 @@
 import { Download } from 'lucide-react';
+import { useLanguage } from '../lib/i18n';
 
 interface ProjectCardProps {
   title: string;
@@ -12,8 +13,10 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ title, description, icon, borderColor, buttonBg, features, link }: ProjectCardProps) {
+  const { t } = useLanguage();
+
   return (
-    <div className={`group relative bg-[#18181B] border border-[#27272A] rounded-2xl p-8 flex flex-col gap-4 text-left transition-colors duration-300 ${borderColor}`}>
+    <div className={`group relative bg-[#18181B] border border-[#27272A] rounded-2xl p-8 flex flex-col gap-4 text-left transition-colors duration-300 ${borderColor}`} id={`project-card-${title.toLowerCase().replace(/\s+/g, '-')}`}>
       
       <div className="flex items-start justify-between">
         <div className="w-16 h-16 bg-[#27272A] rounded-xl flex items-center justify-center">
@@ -40,11 +43,13 @@ export function ProjectCard({ title, description, icon, borderColor, buttonBg, f
           target="_blank"
           rel="noopener noreferrer"
           className={`px-4 py-2 ${buttonBg} rounded-lg text-xs font-bold text-white w-full uppercase tracking-wider transition-colors inline-flex justify-center items-center gap-2`}
+          id={`playstore-link-${title.toLowerCase().replace(/\s+/g, '-')}`}
         >
           <Download className="w-4 h-4" />
-          VER NA PLAY STORE
+          {t('projects.view_playstore')}
         </a>
       </div>
     </div>
   );
 }
+
